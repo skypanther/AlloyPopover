@@ -1,0 +1,18 @@
+
+".container" : {
+  
+}
+"TableView[platform=ios]": {
+	separatorStyle: Titanium.UI.iPhone.TableViewSeparatorStyle.SINGLE_LINE,
+	separatorColor: "#ddd"
+}
+"TableViewRow": {
+	color: 'black'
+}
+"TextField": {
+	color: 'black'
+}
+"TextArea": {
+	color: 'black'
+}
+

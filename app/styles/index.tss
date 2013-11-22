@@ -1,0 +1,11 @@
+".container": {
+	backgroundColor:"white"
+},
+".container[platform=ios]": {
+	top: 20
+},
+"Label": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	color: "#000"
+} 

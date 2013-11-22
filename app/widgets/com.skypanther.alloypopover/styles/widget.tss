@@ -1,0 +1,111 @@
+".popover": {
+	navBarHidden: true,
+	zIndex: 2,
+	backgroundColor: 'transparent'
+},
+".backshade": {
+	backgroundColor: '#2a2a2a',
+	opacity: 0.6,
+	top: 0, left: 0, right: 0, bottom: 0
+},
+".shadow[platform=ios]": {
+	backgroundColor: '#333',
+	width: '75%',
+	height: '80%',
+	opacity: 0.6
+},
+".wrapper": {
+	backgroundColor: 'white',
+	width: '75%',
+	height: '80%',
+	borderColor: '#777',
+	borderWidth: 3
+},
+".wrapper[platform=ios]":{
+	borderRadius: 4
+},
+".titlebar": {
+	backgroundColor: '#777',
+	height: 40,
+	top: 0,
+	width: Ti.UI.FILL
+},
+".titlebar[platform=ios]": {
+	backgroundGradient: {
+        type: 'linear',
+        startPoint: { x: '100%', y: '100%' },
+        endPoint: { x: '100%', y: '0' },
+        colors: [ { color: '#666', offset: 0}, { color: '#555', offset: 0.5 }, { color: '#777', offset: 1 } ]
+	}
+}
+".title": {
+	font: {
+		fontSize: 16
+	},
+	fontWeight: 'bold',
+	color: 'white',
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	text: 'Title',
+	width: Ti.UI.SIZE,
+	zIndex: 1
+},
+".leftnavbutton": {
+	backgroundColor: '#1a48a4',
+	left: 5,
+	bottom: 5,
+	top: 5,
+	width: 50,
+	height: 30,
+	font: {
+		fontSize: 12,
+		fontWeight: 'bold'
+	},
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	backgroundImage: 'none',
+	borderColor: '#444444',
+	borderWidth: 1,
+	color: '#fff',
+	text: 'Left',
+	visible: false
+},
+".leftnavbutton[platform=ios]": {
+	backgroundColor: 'transparent',
+	backgroundGradient: {
+        type: 'linear',
+        colors: [ { color: '#aaa'}, { color: '#1a48a4' } ]
+	},
+	style: Ti.UI.iPhone.SystemButtonStyle.PLAIN,
+	borderRadius: 2
+},
+".rightnavbutton": {
+	backgroundColor: '#1a48a4',
+	right: 5,
+	bottom: 5,
+	top: 5,
+	width: 50,
+	height: 30,
+	font: {
+		fontSize: 12,
+		fontWeight: 'bold'
+	},
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	backgroundImage: 'none',
+	borderColor: '#444',
+	borderWidth: 1,
+	color: '#fff',
+	text: 'Right',
+	visible: false
+},
+".rightnavbutton[platform=ios]": {
+	backgroundColor: 'transparent',
+	backgroundGradient: {
+        type: 'linear',
+        colors: [ { color: '#aaa'}, { color: '#1a48a4' } ]
+	},
+	style: Ti.UI.iPhone.SystemButtonStyle.PLAIN,
+	borderRadius: 2
+},
+".contents": {
+	backgroundColor: 'white',
+	top: 40, left: 2, right: 2, bottom: 2
+}

@@ -1,0 +1,5 @@
+<Alloy>
+	<View class="container">
+		<TableView id="table"/>
+	</View>
+</Alloy>

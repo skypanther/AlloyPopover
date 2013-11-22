@@ -1,0 +1,14 @@
+<Alloy>
+	<Window id="popover" class="popover">
+		<View id="backshade" class="backshade"></View>
+			<View id="shadow" class="shadow" platform="ios"></View>
+			<View id="wrapper" class="wrapper">
+				<View id="titlebar" class="titlebar">
+					<Label id="leftnavbutton" class="leftnavbutton"></Label>
+					<Label id="title" class="title"></Label>
+					<Label id="rightnavbutton" class="rightnavbutton"></Label>
+				</View>
+				<View id="contents" class="contents"></View>
+			</View>
+	</Window>
+</Alloy>
