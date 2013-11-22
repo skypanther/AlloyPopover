@@ -17,8 +17,8 @@ A Titanium Alloy-ready popover component for iOS and Android (probably works on 
 
 ### Example:
 
-```
-// initialize popover within a click handler
+```JavaScript
+// in this example, initialize popover within a click handler
 function doClick() {
 	// create the view that will be shown within the popover
 	var custview = Alloy.createController('custview');
