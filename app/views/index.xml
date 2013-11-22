@@ -1,6 +1,3 @@
-Need a generic way to pass data back from the widget to the calling context. 
-Not currently working, all you get is an empty object.
-
 <Alloy>
 	<Window class="container">
 		<Label id="label" onClick="doClick" top='5'>Show the popover</Label>
