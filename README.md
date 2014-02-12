@@ -54,13 +54,13 @@ function doClick() {
 You can also use the new Alloy (1.3.0) ability to pass views to widgets using XML markup.
 
 ####popover.xml - popover view
+<<<<<<< HEAD
 ```XML
 <Alloy>
 	<Widget id="popover" src="com.skypanther.alloypopover">
 		<TableView id="table"/>
 	</Widget>
 </Alloy>
-
 ```
 
 #####popover.js - popover controller
@@ -82,7 +82,6 @@ $.popover.init({
 	// view to show within the popover (if using this method of passing the view. If undefined, the widget child views from the view will be used)
 	view: args.view
 });
-
 ```
 
 ### Styling the popover
