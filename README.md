@@ -53,7 +53,7 @@ function doClick() {
 ### Passing child views in markup example:
 You can also use the new Alloy (1.3.0) ability to pass views to widgets using XML markup.
 
-#popover.xml - popover view#
+####popover.xml - popover view
 ```JavaScript
 <Alloy>
 	<Widget id="popover" src="com.skypanther.alloypopover">
@@ -62,7 +62,7 @@ You can also use the new Alloy (1.3.0) ability to pass views to widgets using XM
 </Alloy>
 ```
 
-#popover.js - popover controller#
+#####popover.js - popover controller
 ```JavaScript
 // initialize the popover
 $.popover.init({
