@@ -1,4 +1,22 @@
+var args = arguments[0] || {};
+
+// add child views to controller if they exist
+if (args.children) {
+
+	_.each(args.children, function(child) {
+
+		// fix: https://jira.appcelerator.org/browse/TC-3583
+		if (!child) {
+			return;
+		}
+
+		$.contents.add(child);
+	});
+}
+
+
 var disableBackshadeClose = false;
+
 $.init = function (args) {
 	if(!args) args = {};
 	if(args.disableBackshadeClose) disableBackshadeClose = true;
@@ -9,7 +27,7 @@ $.init = function (args) {
 		$.leftnavbutton.addEventListener('click', function(e){
 			e.bubbles = false;
 			e.cancelBubble = true;
-			if (args && args.view.children) {
+			if (args && args.view && args.view.children) {
 				var kids = args.view.children;
 				if(kids && kids.length) {
 					for(var i=0, j=kids.length; i<j; i++) {
@@ -31,7 +49,7 @@ $.init = function (args) {
 		$.rightnavbutton.addEventListener('click', function(e){
 			e.bubbles = false;
 			e.cancelBubble = true;
-			if (args && args.view.children) {
+			if (args && args.view && args.view.children) {
 				var kids = args.view.children;
 				if(kids && kids.length) {
 					for(var i=0, j=kids.length; i<j; i++) {
@@ -52,9 +70,9 @@ $.init = function (args) {
 
 if(OS_IOS) {
 	var shadowOffset = Ti.UI.createAnimation({
-	        transform: Ti.UI.create2DMatrix().translate(3,3),
-	        duration: 1
-	    });
+			transform: Ti.UI.create2DMatrix().translate(3,3),
+			duration: 1
+		});
 	$.shadow.animate(shadowOffset);
 }
 
@@ -74,9 +92,9 @@ if(OS_IOS) {
 }
 $.popover.addEventListener('click', function(e) {
 	if(e.source.id == 'backshade' && !disableBackshadeClose) {
-    	if(OS_IOS) $.popover.animate(hideAnim);
+		if(OS_IOS) $.popover.animate(hideAnim);
         setTimeout(function() {
-        	$.popover.close();
+			$.popover.close();
         }, duration);
 	}
 });
@@ -84,7 +102,7 @@ $.popover.addEventListener('click', function(e) {
 $.hideMe = function() {
 	if(OS_IOS) $.popover.animate(hideAnim);
     setTimeout(function() {
-    	$.popover.close();
+		$.popover.close();
     }, duration);
 };
 
@@ -106,4 +124,3 @@ $.showMe = function(theArgs) {
 		$.popover.opacity = 1;
 	}
 };
-

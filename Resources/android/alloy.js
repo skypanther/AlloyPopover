@@ -13,6 +13,7 @@ function processStyle(controller, proxy, classes, opts, defaults) {
     proxy.apiName && (opts.apiName = proxy.apiName);
     proxy.id && (opts.id = proxy.id);
     proxy.applyProperties(exports.createStyle(controller, opts, defaults));
+    proxy.classes = classes;
 }
 
 function isTabletFallback() {
@@ -21,7 +22,7 @@ function isTabletFallback() {
 
 var _ = require("alloy/underscore")._, Backbone = require("alloy/backbone"), CONST = require("alloy/constants");
 
-exports.version = "1.2.2";
+exports.version = "1.3.0";
 
 exports._ = _;
 
@@ -29,7 +30,11 @@ exports.Backbone = Backbone;
 
 var DEFAULT_WIDGET = "widget";
 
-var IDENTITY_TRANSFORM = void 0;
+var TI_VERSION = Ti.version;
+
+var MW320_CHECK = false;
+
+var IDENTITY_TRANSFORM = Ti.UI.create2DMatrix();
 
 var RESET = {
     bottom: null,
@@ -51,20 +56,24 @@ var RESET = {
     enabled: true,
     horizontalWrap: true,
     zIndex: 0,
-    backgroundColor: null,
+    backgroundColor: "transparent",
     font: null,
     visible: true,
-    color: null,
-    transform: null,
-    backgroundGradient: {},
-    borderColor: "transparent",
-    borderRadius: 0,
-    borderWidth: 0
+    color: "#000",
+    transform: IDENTITY_TRANSFORM,
+    backgroundGradient: null,
+    borderColor: null,
+    borderRadius: null,
+    borderWidth: null
 };
 
 RESET = _.extend(RESET, {
-    backgroundLeftCap: 0,
-    backgroundTopCap: 0
+    backgroundDisabledColor: null,
+    backgroundDisabledImage: null,
+    backgroundFocusedColor: null,
+    backgroundFocusedImage: null,
+    focusable: false,
+    keepScreenOn: false
 });
 
 exports.M = function(name, modelDesc, migrations) {
@@ -160,12 +169,16 @@ exports.createStyle = function(controller, opts, defaults) {
     _.extend(styleFinal, extraStyle);
     styleFinal[CONST.CLASS_PROPERTY] = classes;
     styleFinal[CONST.APINAME_PROPERTY] = apiName;
+    MW320_CHECK && delete styleFinal[CONST.APINAME_PROPERTY];
     return defaults ? _.defaults(styleFinal, defaults) : styleFinal;
 };
 
 exports.addClass = function(controller, proxy, classes, opts) {
     if (!classes) {
-        opts && proxy.applyProperties(opts);
+        if (opts) {
+            MW320_CHECK && delete opts.apiName;
+            proxy.applyProperties(opts);
+        }
         return;
     }
     var pClasses = proxy[CONST.CLASS_PROPERTY] || [];
@@ -173,7 +186,10 @@ exports.addClass = function(controller, proxy, classes, opts) {
     classes = _.isString(classes) ? classes.split(/\s+/) : classes;
     var newClasses = _.union(pClasses, classes || []);
     if (beforeLen === newClasses.length) {
-        opts && proxy.applyProperties(opts);
+        if (opts) {
+            MW320_CHECK && delete opts.apiName;
+            proxy.applyProperties(opts);
+        }
         return;
     }
     processStyle(controller, proxy, newClasses, opts);
@@ -184,13 +200,19 @@ exports.removeClass = function(controller, proxy, classes, opts) {
     var pClasses = proxy[CONST.CLASS_PROPERTY] || [];
     var beforeLen = pClasses.length;
     if (!beforeLen || !classes.length) {
-        opts && proxy.applyProperties(opts);
+        if (opts) {
+            MW320_CHECK && delete opts.apiName;
+            proxy.applyProperties(opts);
+        }
         return;
     }
     classes = _.isString(classes) ? classes.split(/\s+/) : classes;
     var newClasses = _.difference(pClasses, classes);
     if (beforeLen === newClasses.length) {
-        opts && proxy.applyProperties(opts);
+        if (opts) {
+            MW320_CHECK && delete opts.apiName;
+            proxy.applyProperties(opts);
+        }
         return;
     }
     processStyle(controller, proxy, newClasses, opts, RESET);
@@ -223,7 +245,8 @@ exports.createCollection = function(name, args) {
 };
 
 exports.isTablet = function() {
-    return false;
+    var psc = Ti.Platform.Android.physicalSizeCategory;
+    return psc === Ti.Platform.Android.PHYSICAL_SIZE_CATEGORY_LARGE || psc === Ti.Platform.Android.PHYSICAL_SIZE_CATEGORY_XLARGE;
 }();
 
 exports.isHandheld = !exports.isTablet;
@@ -243,3 +266,7 @@ exports.Collections.instance = function(name) {
 };
 
 exports.CFG = require("alloy/CFG");
+
+exports.Android = {};
+
+exports.Android.menuItemCreateArgs = [ "itemId", "groupId", "title", "order", "actionView", "checkable", "checked", "enabled", "icon", "showAsAction", "titleCondensed", "visible" ];
