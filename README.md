@@ -50,9 +50,44 @@ function doClick() {
 
 ```
 
+### Passing child views in markup example:
+You can also use the new Alloy (1.3.0) ability to pass views to widgets using XML markup.
+
+####popover.xml - popover view
+```XML
+<Alloy>
+	<Widget id="popover" src="com.skypanther.alloypopover">
+		<TableView id="table"/>
+	</Widget>
+</Alloy>
+
+```
+
+#####popover.js - popover controller
+```JavaScript
+// initialize the popover
+$.popover.init({
+	title: 'Popover',
+	showLeftNavButton: true,
+	leftNavButtonTitle: 'Done',
+	leftNavCallback: function() {
+		// function run after left button is clicked
+	},
+	showRightNavButton: true,
+	rightNavButtonTitle: 'Next',
+	rightNavCallback: function() {
+	},
+	// set to true to disable tapping on backshade to close
+	disableBackshadeClose: false,
+	// view to show within the popover (if using this method of passing the view. If undefined, the widget child views from the view will be used)
+	view: args.view
+});
+
+```
+
 ### Styling the popover
 
-You can override the default styles by adding any of the following selectors to your project's app/styles/app.tss file:
+You can override the default styles by adding any of the following selectors to your project's app/styles/app.tss file or if using XML child views, to the app/styles/popover.tss file:
 
 ```
 "#popover": {}, /* window containing popover */
