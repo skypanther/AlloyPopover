@@ -2,6 +2,8 @@
 
 A Titanium Alloy-ready popover component for iOS and Android (probably works on Tizen & BB10, but untested). This component somewhat replicates the iPad-specific iPad control. It does _not_ instantiate Ti.UI.iPad.PopOver on iOS.
 
+<img src="https://raw.github.com/skypanther/AlloyPopover/master/iphone.png" width="300"> <img src="https://raw.github.com/skypanther/AlloyPopover/master/android.png" width="300">
+
 ## Instructions
 
 1. Download & unzip the dist/alloypopover.zip file
