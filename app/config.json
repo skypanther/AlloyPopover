@@ -6,6 +6,6 @@
     "os:ios": {},
     "os:android": {},
     "dependencies": {
-        "com.skypanther.alloypopover": "1.0"
+        "com.skypanther.alloypopover": "1.1"
     }
 }

@@ -2,8 +2,6 @@
 
 A Titanium Alloy-ready popover component for iOS and Android (probably works on Tizen & BB10, but untested). This component somewhat replicates the iPad-specific iPad control. It does _not_ instantiate Ti.UI.iPad.PopOver on iOS.
 
-<img src="https://raw.github.com/skypanther/AlloyPopover/master/iphone.png" width="300"> <img src="https://raw.github.com/skypanther/AlloyPopover/master/android.png" width="300">
-
 ## Instructions
 
 1. Download & unzip the dist/alloypopover.zip file
@@ -11,16 +9,55 @@ A Titanium Alloy-ready popover component for iOS and Android (probably works on 
 3. Modify app/config.json:
 ```
 "dependencies": {
-    "com.skypanther.alloypopover": "1.0"
+    "com.skypanther.alloypopover": "1.1"
 }
 ```
 4. Instantiate in your controller following the example code below. 
 5. Optional, style the popover following the instructions below
 
-### Example:
+## Examples
 
+See the included sample app. Or, check out the following.
+
+### Example 1: Passing child views in markup example
+
+You can pass child views to the widget in the XML (added in Alloy 1.3.0):
+
+####popover.xml - popover view
+
+```XML
+<Alloy>
+	<Widget id="popover" src="com.skypanther.alloypopover">
+		<TableView id="table"/>
+	</Widget>
+</Alloy>
+```
+
+#####popover.js - popover controller
 ```JavaScript
-// in this example, initialize popover within a click handler
+// initialize the popover
+$.popover.init({
+	title: 'Popover',
+	showLeftNavButton: true,
+	leftNavButtonTitle: 'Done',
+	leftNavCallback: function() {
+		// function run after left button is clicked
+	},
+	showRightNavButton: true,
+	rightNavButtonTitle: 'Next',
+	rightNavCallback: function() {
+	},
+	// set to true to disable tapping on backshade to close
+	disableBackshadeClose: false,
+	// view to show within the popover (if using this method of passing the view. If undefined, the widget child views from the view will be used)
+	view: args.view
+});
+```
+
+### Example 2: Creating/initializing in the controller
+
+```
+// initialize popover within a click handler
 function doClick() {
 	// create the view that will be shown within the popover
 	var custview = Alloy.createController('custview');
@@ -74,12 +111,10 @@ Tim Poulsen, @skypanther
 
 MIT License
 
-Copyright &copy; 2013, Skypanther Studios, Inc.
+Copyright &copy; 2013-2014, Skypanther Studios, Inc.
  
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
  
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-"Appcelerator" and "Titanium" are trademarks or registered trademarks of Appcelerator, Inc.

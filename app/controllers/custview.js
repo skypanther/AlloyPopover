@@ -1,4 +1,5 @@
-var args = arguments[0] || {};
+var args = arguments[0] || {},
+	rowClicked;
 
 var data = [];
 for(var i=0; i<5; i++) {
@@ -17,6 +18,25 @@ $.table.addEventListener('click', function(e) {
 		if(e.rowData.counter == i) data[i].hasCheck = true;
 	}
 	$.table.data = data;
-	Alloy.Globals.theRow = e.row; // set the global obj equal to the tapped row
+	rowClicked = e.row; // set the internal variable equal to the tapped row
 });
 
+// initialize the popover
+$.popover.init({
+	title: 'Popover',
+	showLeftNavButton: true,
+	leftNavButtonTitle: 'Done',
+	leftNavCallback: function() {
+		// function run after left button is clicked
+		alert(JSON.stringify(rowClicked));
+	},
+	showRightNavButton: true,
+	rightNavButtonTitle: 'Next',
+	rightNavCallback: function() {
+		alert(JSON.stringify(rowClicked));
+	},
+	// set to true to disable tapping on backshade to close
+	disableBackshadeClose: false,
+	// view to show within the popover
+	view: args.view
+});

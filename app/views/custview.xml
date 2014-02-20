@@ -1,5 +1,5 @@
 <Alloy>
-	<View class="container">
+	<Widget id="popover" src="com.skypanther.alloypopover">
 		<TableView id="table"/>
-	</View>
+	</Widget>
 </Alloy>

@@ -1,3 +1,19 @@
+var args = arguments[0] || {};
+
+// add child views to controller if they exist
+if (args.children) {
+
+	_.each(args.children, function(child) {
+
+		// fix: https://jira.appcelerator.org/browse/TC-3583
+		if (!child) {
+			return;
+		}
+
+		$.contents.add(child);
+	});
+}
+
 var disableBackshadeClose = false;
 $.init = function (args) {
 	if(!args) args = {};
@@ -9,7 +25,7 @@ $.init = function (args) {
 		$.leftnavbutton.addEventListener('click', function(e){
 			e.bubbles = false;
 			e.cancelBubble = true;
-			if (args && args.view.children) {
+			if (args && args.view && args.view.children) {
 				var kids = args.view.children;
 				if(kids && kids.length) {
 					for(var i=0, j=kids.length; i<j; i++) {
@@ -31,7 +47,7 @@ $.init = function (args) {
 		$.rightnavbutton.addEventListener('click', function(e){
 			e.bubbles = false;
 			e.cancelBubble = true;
-			if (args && args.view.children) {
+			if (args && args.view && args.view.children) {
 				var kids = args.view.children;
 				if(kids && kids.length) {
 					for(var i=0, j=kids.length; i<j; i++) {
