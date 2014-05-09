@@ -1,6 +1,6 @@
 # AlloyPopover
 
-A Titanium Alloy-ready popover component for iOS and Android (probably works on Tizen & BB10, but untested). This component somewhat replicates the iPad-specific iPad control. It does _not_ instantiate Ti.UI.iPad.PopOver on iOS.
+A Titanium Alloy-ready popover component for iOS and Android (probably works on MobileWeb & BB10, but untested). This component somewhat replicates the iPad-specific iPad control. It does _not_ instantiate Ti.UI.iPad.PopOver on iOS.
 
 <img src="https://raw.github.com/skypanther/AlloyPopover/master/iphone.png" width="300"> <img src="https://raw.github.com/skypanther/AlloyPopover/master/android.png" width="300">
 
@@ -11,7 +11,7 @@ A Titanium Alloy-ready popover component for iOS and Android (probably works on 
 3. Modify app/config.json:
 ```
 "dependencies": {
-    "com.skypanther.alloypopover": "1.1"
+	"com.skypanther.alloypopover": "1.2"
 }
 ```
 4. Instantiate in your controller following the example code below. 
@@ -49,10 +49,26 @@ $.popover.init({
 	rightNavButtonTitle: 'Next',
 	rightNavCallback: function() {
 	},
+
 	// set to true to disable tapping on backshade to close
 	disableBackshadeClose: false,
-	// view to show within the popover (if using this method of passing the view. If undefined, the widget child views from the view will be used)
-	view: args.view
+
+	// view to show within the popover (if using this method of passing the view. 
+	// If undefined, the widget child views from the view will be used)
+	view: args.view,
+
+	// time after left or right done buttons before the popover window is closed
+	duration: 200,  // defaults: iOS: 200 ms, Android: 1000 ms
+
+	openCallback: function() {
+		// called when popover is opened
+		alert('open callback');
+	},
+	closeCallback: function() {
+		// called when popover is closed
+		alert('close callback');
+	}
+
 });
 ```
 

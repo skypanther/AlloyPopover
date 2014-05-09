@@ -28,15 +28,22 @@ $.popover.init({
 	leftNavButtonTitle: 'Done',
 	leftNavCallback: function() {
 		// function run after left button is clicked
-		alert(JSON.stringify(rowClicked));
+		if(rowClicked) {
+			alert(JSON.stringify(rowClicked));
+		}
 	},
 	showRightNavButton: true,
 	rightNavButtonTitle: 'Next',
 	rightNavCallback: function() {
-		alert(JSON.stringify(rowClicked));
+		if(rowClicked) {
+			alert(JSON.stringify(rowClicked));
+		}
 	},
 	// set to true to disable tapping on backshade to close
 	disableBackshadeClose: false,
 	// view to show within the popover
-	view: args.view
+	view: args.view,
+	openCallback: function() {
+		Ti.API.info('The Popover has been opened');
+	}
 });

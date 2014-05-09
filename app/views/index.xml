@@ -1,5 +1,14 @@
 <Alloy>
-	<Window class="container">
-		<Label id="label" onClick="doClick" top='5'>Show the popover</Label>
-	</Window>
+	<TabGroup>
+		<Tab title="Tab 1">
+			<Window class="container" title="Window 1">
+				<Label id="label" onClick="doClick" top='5'>Show the popover</Label>
+			</Window>
+		</Tab>
+		<Tab title="Tab 2">
+			<Window class="container" title="Window 2">
+				<Label id="label2">Nothing of note on this tab</Label>
+			</Window>
+		</Tab>
+	</TabGroup>
 </Alloy>

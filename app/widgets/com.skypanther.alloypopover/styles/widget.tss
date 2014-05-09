@@ -3,6 +3,9 @@
 	zIndex: 2,
 	backgroundColor: 'transparent'
 },
+".popover[platform=android]": {
+	modal: true
+}
 ".backshade": {
 	backgroundColor: '#2a2a2a',
 	opacity: 0.6,

@@ -3,7 +3,7 @@
 	"name": "com.skypanther.alloypopover",
 	"description" : "A popover-like component for iOS and Android",
 	"author": "Tim Poulsen, @skypanther",
-	"version": "1.1",
+	"version": "1.2",
 	"copyright":"Copyright (c) 2013",
 	"license":"MIT",
 	"min-alloy-version": "1.3",

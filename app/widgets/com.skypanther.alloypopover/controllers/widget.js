@@ -1,4 +1,5 @@
 var args = arguments[0] || {};
+var duration = (OS_IOS) ? 200 : 1000;
 
 // add child views to controller if they exist
 if (args.children) {
@@ -19,7 +20,7 @@ $.init = function (args) {
 	if(!args) args = {};
 	if(args.disableBackshadeClose) disableBackshadeClose = true;
 	$.title.text = (args.title) ? args.title : '';
-	if(args && args.showLeftNavButton) {
+	if(args.showLeftNavButton) {
 		$.leftnavbutton.text = (args.leftNavButtonTitle) ? args.leftNavButtonTitle : '';
 		$.leftnavbutton.visible = true;
 		$.leftnavbutton.addEventListener('click', function(e){
@@ -41,7 +42,7 @@ $.init = function (args) {
 			$.hideMe();
 		});
 	}
-	if(args && args.showRightNavButton) {
+	if(args.showRightNavButton) {
 		$.rightnavbutton.text = (args.rightNavButtonTitle) ? args.rightNavButtonTitle : '';
 		$.rightnavbutton.visible = true;
 		$.rightnavbutton.addEventListener('click', function(e){
@@ -61,8 +62,28 @@ $.init = function (args) {
 			$.hideMe();
 		});
 	}
-	if(args && args.view) {
+	if(args.view) {
 		$.contents.add(args.view);
+	}
+	if(args.duration) {
+		duration = args.duration;
+	}
+	if(args.openCallback && typeof args.openCallback==='function') {
+		//add a callback function when this opens
+		$.popover.addEventListener('open', function(e){
+			e.bubbles = false;
+			e.cancelBubble = true;
+			args.openCallback();
+		});
+	}
+
+	if(args.closeCallback && typeof args.closeCallback==='function') {
+		//add a callback function when this closes
+		$.popover.addEventListener('close', function(e){
+			e.bubbles = false;
+			e.cancelBubble = true;
+			args.closeCallback();
+		});
 	}
 };
 
@@ -75,7 +96,6 @@ if(OS_IOS) {
 }
 
 
-var duration = 200;
 if(OS_IOS) {
 	var showAnim = Titanium.UI.createAnimation({
 			opacity: 1,
